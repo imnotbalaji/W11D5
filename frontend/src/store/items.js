@@ -25,6 +25,18 @@ const remove = (itemId, pokemonId) => ({
   pokemonId
 });
 
+export const deleteItem = (pokemonId, itemId) => async dispatch => {
+  const res = await fetch(`/api/items/${itemId}`, {
+    method: "DELETE",
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  }); 
+  const data = await res.json()
+  dispatch(remove(itemId, pokemonId))
+}
+
 export const getItems = (pokemonId) => async dispatch => {
   // debugger
   const res = await fetch(`/api/pokemon/${pokemonId}/items`);
