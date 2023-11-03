@@ -4,10 +4,11 @@ import thunk from "redux-thunk";
 import pokemon from "./pokemon";
 import items from "./items";
 import pokemonReducer from "./pokemon";
+import itemsReducer from "./items";
 
 const rootReducer = combineReducers({
   pokemon: pokemonReducer,
-  items,
+  items: itemsReducer
 });
 
 let enhancer;
