@@ -34,8 +34,9 @@ export const createPokemonForm = (pokemon) => async dispatch => {
   return data
 }
 
+
 export const getOnePokemon = (pokemonId) => async dispatch => { 
-  debugger
+  // debugger
   const response = await fetch (`/api/pokemon/${pokemonId}`)
   const data = await response.json(); 
   dispatch(addOnePokemon(data))
