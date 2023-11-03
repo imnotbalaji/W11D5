@@ -19,6 +19,28 @@ const addOnePokemon = pokemon => ({
   pokemon
 });
 
+export const createPokemonForm = (pokemon) => async dispatch => {
+  debugger
+  const response = await fetch ("/api/pokemon", {
+    method: "POST", 
+    body: JSON.stringify(pokemon),
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }
+  })
+  const data = await response.json(); 
+  dispatch(addOnePokemon(data))
+  return data
+}
+
+export const getOnePokemon = (pokemonId) => async dispatch => { 
+  debugger
+  const response = await fetch (`/api/pokemon/${pokemonId}`)
+  const data = await response.json(); 
+  dispatch(addOnePokemon(data))
+}
+
 export const getPokemon = () => async dispatch => {
   const response = await fetch(`/api/pokemon`);
 
@@ -36,6 +58,21 @@ export const getPokemonTypes = () => async dispatch => {
     dispatch(loadTypes(types));
   }
 };
+
+export const editPokemon = (pokemon) => async dispatch => {
+  const response = await fetch(`/api/pokemon/${pokemon.id}`, {
+    method: "PUT",
+    body: JSON.stringify(pokemon),
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }
+  })
+  const data = await response.json(); 
+  dispatch(addOnePokemon(data))
+}
+
+
 
 const initialState = {
   list: [],
